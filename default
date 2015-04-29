@@ -7,7 +7,7 @@ server {
  
     server_name localhost;
  
-    location /install{
+   location /install{
     	rewrite ^ /install/install.php;
     }
  
@@ -15,10 +15,6 @@ server {
         try_files $uri $uri/ /admin/index.php?$query_string;
     }
     
-    location /history{
-        try_files $uri $uri/ /admin/index.php?$query_string;
-    }
- 
     location /{
         try_files $uri $uri/ /index.php?$query_string;
     }
@@ -27,7 +23,7 @@ server {
       	try_files $uri $uri/ =404;
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php5-fpm.sock;
-	fastcgi_param APPLICATION_ENV development;
+	fastcgi_param APPLICATION_ENV production;
         include /etc/nginx/fastcgi_params;
     }
 }
